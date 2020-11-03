@@ -2,10 +2,9 @@
 // @name         pzl_all_selecter_script
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  jp_pzlsystem judge_teacher all_select_A
+// @description  pzlsystem judge_teacher all_select_A
 // @author       wlt233
-// @include      *://www.jianping.com.cn/pzlschoolweb/JZXPW3004.ASPX*
-// @include      *://www.hsjp.pdedu.sh.cn/pzlschoolweb/JZXPW3004.ASPX*
+// @include      *://$website/pzlschoolweb/JZXPW3004.ASPX*
 // @require      http://cdn.bootcss.com/jquery/1.8.3/jquery.min.js
 // @grant        none
 // ==/UserScript==
