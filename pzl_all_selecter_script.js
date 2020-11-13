@@ -1,97 +1,72 @@
 // ==UserScript==
 // @name         pzl_all_selecter_script
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @namespace    https://tqlwsl.moe/
+// @version      1.0
 // @description  pzlsystem judge_teacher all_select_A
 // @author       wlt233
-// @include      *://$website/pzlschoolweb/JZXPW3004.ASPX*
-// @require      http://cdn.bootcss.com/jquery/1.8.3/jquery.min.js
+// @include      *://$website$/pzlschoolweb/JZXPW3004.ASPX*
 // @grant        none
 // ==/UserScript==
 
+// code by wlt233 | v1.0 2020.11.13
+
+// 先生の事好きですかー？ (ハーイハイハイハーイハイ)
+// 手を上げてない人は 居残りですよ
+// ----イノコリ先生
+
 (function() {
     'use strict';
-    function sr(i){
-        document.getElementsByName("XDataGrid1:_ctl2:XP3064_0_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl3:XP3081_1_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl4:XP3088_2_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl5:XP3089_3_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl6:XP3116_4_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl7:XP3117_5_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl8:XP3118_6_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl9:XP3119_7_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl10:XP3121_8_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl11:XP3122_9_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl12:XP3123_10_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl13:XP3124_11_"+i)[0].click();
-        document.getElementsByName("XDataGrid1:_ctl14:XP3125_12_"+i)[0].click();
+
+    let teacherNumber = document.querySelectorAll(".pzlsheader")[2].childElementCount - 3;
+    let tab = document.getElementById("XDataGrid1");
+    let tradd = tab.insertRow(1);
+    tradd.style.background = "orange";
+    tradd.innerHTML += "<td></td>";
+    tradd.innerHTML += '<td><a href="javascript:void(0);" id="selectAll" title="全部全选 A"s><em>全部全选</em></td>';
+    for (let i = 1; i <= teacherNumber; ++i) {
+        tradd.innerHTML += '<td><a href="javascript:void(0);" id="selectTeacherAll' + i + '" title="全选 A"><em>全选</em></td>';
     }
-    var tab=document.getElementById("XDataGrid1");
-    var tradd=tab.insertRow(0);
-    tradd.style.background='orange'
-    tradd.innerHTML+='<td><a href="javascript:void(0);" id="selectall" title="全部全选"><em>全部全选</em></td>'
-    tradd.innerHTML+='<td></td>'
-    for (var _tri = 3; _tri <= 20; _tri++)
-    {
-        tradd.innerHTML+='<td><a href="javascript:void(0);" id="selectall'+_tri+'" title="全选"><em>全选</em></td>';
-     }
-    $("#selectall3").click(function () {
-            sr(4);
-    });
-    $("#selectall4").click(function () {
-            sr(5);
-    });
-    $("#selectall5").click(function () {
-            sr(6);
-    });
-    $("#selectall6").click(function () {
-            sr(7);
-    });
-    $("#selectall7").click(function () {
-            sr(8);
-    });
-    $("#selectall8").click(function () {
-            sr(9);
-    });
-    $("#selectall9").click(function () {
-            sr(10);
-    });
-    $("#selectall10").click(function () {
-            sr(11);
-    });
-    $("#selectall11").click(function () {
-            sr(12);
-    });
-    $("#selectall12").click(function () {
-            sr(13);
-    });
-    $("#selectall13").click(function () {
-            sr(14);
-    });
-    $("#selectall14").click(function () {
-            sr(15);
-    });
-    $("#selectall15").click(function () {
-            sr(16);
-    });
-    $("#selectall16").click(function () {
-            sr(17);
-    });
-    $("#selectall17").click(function () {
-            sr(18);
-    });
-    $("#selectall18").click(function () {
-            sr(19);
-    });
-    $("#selectall19").click(function () {
-            sr(20);
-    });
-    $("#selectall20").click(function () {
-            sr(21);
-    });
-    $("#selectall").click(function () {
-        for (var _i = 4; _i <= 21; _i++){
-            sr(_i);
+    tradd.innerHTML += "<td></td>";
+
+    function selectRow(i){
+        let questionList = [
+            "2:XP3064_0_",
+            "3:XP3081_1_",
+            "4:XP3088_2_",
+            "5:XP3089_3_",
+            "6:XP3116_4_",
+            "7:XP3117_5_",
+            "8:XP3118_6_",
+            "9:XP3119_7_",
+            "10:XP3121_8_",
+            "11:XP3122_9_",
+            "12:XP3123_10_",
+            "13:XP3124_11_",
+            "14:XP3125_12_",
+            "15:XP3126_13_",
+            "16:XP3127_14_",
+            "17:XP3128_15_"
+        ];
+        questionList.forEach((name) => {
+            if (document.getElementsByName("XDataGrid1:_ctl" + name + i).length) {
+                document.getElementsByName("XDataGrid1:_ctl" + name + i)[0].click();
+                // 0 for A, 1 for B, etc..
+            }
+        });
+    }
+
+    for (let i = 1; i <= teacherNumber; ++i) {
+       document.querySelector("#selectTeacherAll" + i).onclick = () => {
+           selectRow(i + 3);
+       };
+    }
+
+    document.querySelector("#selectAll").onclick = () => {
+        for (let i = 1; i <= teacherNumber; i++){
+            selectRow(i + 3);
         }
-    });
+    };
+
+    document.querySelectorAll(".padlinetd")[1].appendChild(document.createTextNode("Fast select script by wlt233  2020.11.13"));
+
 })();
