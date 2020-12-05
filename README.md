@@ -1,2 +1,2 @@
 # personal-tampermonkey-scripts
-Placeholder of personal tampermonkey scripts. Most for school work.
+Place of personal tampermonkey scripts. Most for school work.
