@@ -17,7 +17,7 @@
 (function() {
     'use strict';
 
-    let teacherNumber = document.querySelectorAll(".pzlsheader")[2].childElementCount - 3;
+    let teacherNumber = document.querySelectorAll(".pzlsheader")[0].childElementCount - 3;   // 2021.06.04 fixed bug
     let tab = document.getElementById("XDataGrid1");
     let tradd = tab.insertRow(1);
     tradd.style.background = "orange";
