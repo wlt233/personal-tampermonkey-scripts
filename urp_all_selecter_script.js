@@ -4,8 +4,8 @@
 // @version      1.0
 // @description  urp judge_teacher all_select_A
 // @author       wlt233
-// @include      https://$website$/student/teachingEvaluation/evaluation/index
-// @include      https://$website$/student/teachingEvaluation/teachingEvaluation/evaluationPage
+// @include      https://urp.shou.edu.cn/student/teachingEvaluation/evaluation/index
+// @include      https://urp.shou.edu.cn/student/teachingEvaluation/teachingEvaluation/evaluationPage
 // @run-at       document-end
 // @grant        none
 // ==/UserScript==
